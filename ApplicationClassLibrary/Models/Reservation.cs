@@ -12,6 +12,9 @@ namespace ApplicationClassLibrary.Models
         public string UserName { get; }
         public DateTime StartTime { get; }
         public DateTime EndTime { get; }
+        /// <summary>
+        /// Time of reservation
+        /// </summary>
         public TimeSpan Length => EndTime.Subtract(StartTime);
 
         public Reservation(RoomID roomID, string userName, DateTime startTime, DateTime endTime)
@@ -22,6 +25,9 @@ namespace ApplicationClassLibrary.Models
             UserName = userName;
         }
 
+        /// <summary>
+        /// While we're going to create new reservation this method check if our reservation already exist
+        /// </summary>
         internal bool Conflicts(Reservation reservation)
         {
             if (reservation.RoomID != RoomID)
