@@ -27,7 +27,7 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Text="Name" Grid.Row="0"/>
+            <TextBlock Text="Username" Grid.Row="0"/>
 
             <TextBox 
                 Width="160"

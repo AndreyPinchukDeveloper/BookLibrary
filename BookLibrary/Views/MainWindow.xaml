@@ -11,6 +11,6 @@
         Width="800"
         FontSize="14">
     <Grid Margin="20" MaxWidth="800">
-        <views:MakeReservationView/>
+        <views:ReservationListingView/>
     </Grid>
 </Window>
