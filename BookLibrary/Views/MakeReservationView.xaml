@@ -31,7 +31,7 @@
 
             <TextBox 
                 Width="160"
-                Text="" 
+                Text="{Binding Username}" 
                 Margin="0,5,0,0"
                 Grid.Row="1" HorizontalAlignment="Left"/>
         </Grid>
@@ -54,7 +54,7 @@
 
             <TextBox
                 Grid.Column="0"
-                Text="" 
+                Text="{Binding FloorNumber}" 
                 Margin="0,5,0,0"
                 Grid.Row="1"/>
 
@@ -66,7 +66,7 @@
 
             <TextBox 
                 Grid.Column="1"
-                Text="" 
+                Text="{Binding RoomNumber}" 
                 Margin="15,5,0,0"
                 Grid.Row="1"/>
 
@@ -90,7 +90,7 @@
 
             <DatePicker 
                 Grid.Column="0"
-                SelectedDate="" 
+                SelectedDate="{Binding StartDate}" 
                 Margin="0,5,0,0"
                 Grid.Row="1"/>
 
@@ -102,15 +102,20 @@
 
             <DatePicker 
                 Grid.Column="1"
-                SelectedDate="" 
+                SelectedDate="{Binding EndDate}" 
                 Margin="15,5,0,0"
                 Grid.Row="1"/>
 
         </Grid>
 
         <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="20,20,0,0">
-            <Button Content="Submit"/>
-            <Button Content="Cancel" Margin="170,0,0,0"/>
+            <Button 
+                Content="Submit"
+                Command="{Binding SubmitCommand}"/>
+            <Button 
+                Content="Cancel" 
+                Margin="170,0,0,0"
+                Command="{Binding CancelCommand}"/>
         </StackPanel>
     </Grid>
 </UserControl>
