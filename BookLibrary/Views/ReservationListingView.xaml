@@ -25,13 +25,11 @@
             <Button
                 Grid.Column="1"
                 Margin="10 0 0 0"
-                Content="Make Resrvation"/>
+                Content="Make Resrvation"
+                Command="{Binding MakeReservationCommand}"/>
         </Grid>
 
-        <ListView Grid.Row="1" Margin="0 25 0 0">
-            <ListViewItem/>
-            <ListViewItem/>
-            <ListViewItem/>
+        <ListView Grid.Row="1" Margin="0 25 0 0" ItemsSource="{Binding Reservations, UpdateSourceTrigger=PropertyChanged}">
 
             <!--This container style make that our text is always in the midle of column even if you stretch it-->
             <ListView.ItemContainerStyle>
@@ -45,7 +43,7 @@
                     <GridViewColumn Header="Room ID">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="12" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding RoomID, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -53,7 +51,7 @@
                     <GridViewColumn Header="Username">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="Andre" Padding="0 0 50 0"/>
+                                <TextBlock Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}" Padding="0 0 50 0"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -61,7 +59,7 @@
                     <GridViewColumn Header="Start Date">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="12" Padding="0 0 50 0"/>
+                                <TextBlock Text="{Binding StartDate, UpdateSourceTrigger=PropertyChanged}" Padding="0 0 50 0"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -69,7 +67,7 @@
                     <GridViewColumn Header="End Date">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="12" Padding="0 0 50 0"/>
+                                <TextBlock Text="{Binding EndDate, UpdateSourceTrigger=PropertyChanged}" Padding="0 0 50 0"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

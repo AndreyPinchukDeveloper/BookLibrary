@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ApplicationClassLibrary.Models;
+using BookLibrary.Commands;
+using System;
 using System.Windows.Input;
 
 namespace BookLibrary.ViewModels
@@ -64,13 +66,14 @@ namespace BookLibrary.ViewModels
 
         #region Commands
         //TODO - implement command
+        //TODO -async/await for buttons
         public ICommand SubmitCommand { get; }
         public ICommand CancelCommand { get; }
         #endregion
 
-        public MakeResrvationViewModel()
+        public MakeResrvationViewModel(Hotel hotel)
         {
-
+            SubmitCommand = new MakeReservationCommand(this, hotel);
         }
     }
 }

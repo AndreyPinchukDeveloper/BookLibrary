@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ApplicationClassLibrary.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,11 @@ namespace BookLibrary.ViewModels
 {
     public class MainViewModel:ViewModelBase
     {
+        public ViewModelBase CurrentViewModel { get; }
+
+        public MainViewModel(Hotel hotel)
+        {
+            CurrentViewModel = new MakeResrvationViewModel(hotel);
+        }
     }
 }
