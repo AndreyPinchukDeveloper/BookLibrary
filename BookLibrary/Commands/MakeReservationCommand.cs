@@ -3,6 +3,7 @@ using ApplicationClassLibrary.Models;
 using BookLibrary.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,30 @@ namespace BookLibrary.Commands
         {
             _makeResrvationViewModel = makeResrvationViewModel;
             _hotel = hotel;
+
+            _makeResrvationViewModel.PropertyChanged += OnViewModelPropertyChanged;//subscribe to propertyChnaged on our ViewModel
+        }
+
+        /// <summary>
+        /// We come here while enter our Username
+        /// </summary>
+        private void OnViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(MakeResrvationViewModel.Username)||
+                e.PropertyName == nameof(MakeResrvationViewModel.FloorNumber))
+            {
+                OnCanExecuteChanged();
+            }
+        }
+
+        /// <summary>
+        /// If username null or empty Submit button isn't available
+        /// </summary>
+        public override bool CanExecute(object parameter)
+        {
+            return !string.IsNullOrEmpty(_makeResrvationViewModel.Username) &&
+                _makeResrvationViewModel.FloorNumber>0 &&
+                base.CanExecute(parameter);
         }
 
         /// <summary>

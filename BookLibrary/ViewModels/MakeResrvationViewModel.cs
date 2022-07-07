@@ -15,7 +15,7 @@ namespace BookLibrary.ViewModels
             set 
             {
                 _username = value;
-                OnPropertyCHanged(nameof(Username));
+                OnPropertyChanged(nameof(Username));
             }
         }
 
@@ -26,7 +26,7 @@ namespace BookLibrary.ViewModels
             set
             {
                 _floorNumber = value;
-                OnPropertyCHanged(nameof(FloorNumber));
+                OnPropertyChanged(nameof(FloorNumber));
             }
         }
 
@@ -37,43 +37,46 @@ namespace BookLibrary.ViewModels
             set
             {
                 _roomNumber = value;
-                OnPropertyCHanged(nameof(RoomNumber));
+                OnPropertyChanged(nameof(RoomNumber));
             }
         }
 
-        private DateTime _startDate;
+        private DateTime _startDate = new DateTime(2021,1,1);
         public DateTime StartDate
         {
             get { return _startDate; }
             set
             {
                 _startDate = value;
-                OnPropertyCHanged(nameof(StartDate));
+                OnPropertyChanged(nameof(StartDate));
             }
         }
 
-        private DateTime _endDate;
+        private DateTime _endDate = new DateTime(2021,1,8);
         public DateTime EndDate
         {
             get { return _endDate; }
             set
             {
                 _endDate = value;
-                OnPropertyCHanged(nameof(EndDate));
+                OnPropertyChanged(nameof(EndDate));
             }
         }
         #endregion
 
         #region Commands
-        //TODO - implement command
         //TODO -async/await for buttons
         public ICommand SubmitCommand { get; }
         public ICommand CancelCommand { get; }
         #endregion
 
+        /// <summary>
+        /// We initializeour commands in this constructor
+        /// </summary>
         public MakeResrvationViewModel(Hotel hotel)
         {
             SubmitCommand = new MakeReservationCommand(this, hotel);
+            CancelCommand = new CancelMakeReservationCommand();
         }
     }
 }

@@ -9,7 +9,7 @@ namespace BookLibrary.ViewModels
         /// <summary>
         /// This method is serving to tell UI what bindings is update
         /// </summary>
-        protected void OnPropertyCHanged(string propertyName)//only for inheritors
+        protected void OnPropertyChanged(string propertyName)//only for inheritors
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
