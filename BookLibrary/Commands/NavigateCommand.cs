@@ -1,4 +1,5 @@
 ﻿using ApplicationClassLibrary.Models;
+using BookLibrary.Services;
 using BookLibrary.Stores;
 using BookLibrary.ViewModels;
 using System;
@@ -11,16 +12,15 @@ namespace BookLibrary.Commands
 {
     public class NavigateCommand : CommandBase
     {
-        private readonly NavigationStore _navigationStore;
-
-        public NavigateCommand(NavigationStore navigationStore)
+        private readonly MyNavigationService _navigationService;
+        public NavigateCommand(MyNavigationService navigationService)
         {
-            _navigationStore = navigationStore;
+            _navigationService = navigationService;
         }
 
         public override void Execute(object parameter)
         {
-            _navigationStore.CurrentViewModel = new MakeResrvationViewModel(new Hotel(""));
+            _navigationService.Navigate();
         }
     }
 }

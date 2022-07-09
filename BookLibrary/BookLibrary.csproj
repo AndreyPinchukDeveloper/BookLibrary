@@ -59,6 +59,7 @@
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\MakeReservationCommand.cs" />
     <Compile Include="Commands\NavigateCommand.cs" />
+    <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Stores\NavigationStore.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MakeResrvationViewModel.cs" />

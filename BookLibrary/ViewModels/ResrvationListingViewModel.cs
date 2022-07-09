@@ -1,5 +1,6 @@
 ﻿using ApplicationClassLibrary.Models;
 using BookLibrary.Commands;
+using BookLibrary.Services;
 using BookLibrary.Stores;
 using System;
 using System.Collections.Generic;
@@ -11,17 +12,33 @@ namespace BookLibrary.ViewModels
     public class ReservationListingViewModel:ViewModelBase
     {
         private readonly ObservableCollection<ReservationViewModel> _reservations;
+        private readonly Hotel _hotel;
 
         public IEnumerable<ReservationViewModel> Reservations => _reservations;
         public ICommand MakeReservationCommand { get; }
-        public ReservationListingViewModel(NavigationStore navigationStore)
+
+        public ReservationListingViewModel(Hotel hotel, MyNavigationService makeReservationNavigationService)
         {
+            _hotel = hotel;
             _reservations = new ObservableCollection<ReservationViewModel>();
-            MakeReservationCommand = new NavigateCommand(navigationStore);
+
+            MakeReservationCommand = new NavigateCommand(makeReservationNavigationService);
 
             //TODO - use data from database
-            _reservations.Add(new ReservationViewModel(new Reservation(new RoomID(1, 2), "Andre", DateTime.Now, DateTime.Now)));
-            _reservations.Add(new ReservationViewModel(new Reservation(new RoomID(2, 3), "Inessa", DateTime.Now, DateTime.Now)));
+
+            UpdateReservations();
+        }
+
+        private void UpdateReservations()
+        {
+            _reservations.Clear();
+
+            foreach (var reservation in _hotel.GetAllReservations())
+            {
+                ReservationViewModel reservationViewModel = new ReservationViewModel(reservation);
+                _reservations.Add(reservationViewModel);
+            }
+
         }
     }
 }

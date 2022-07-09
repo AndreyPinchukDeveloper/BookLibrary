@@ -1,5 +1,7 @@
 ﻿using ApplicationClassLibrary.Models;
 using BookLibrary.Commands;
+using BookLibrary.Services;
+using BookLibrary.Stores;
 using System;
 using System.Windows.Input;
 
@@ -73,10 +75,10 @@ namespace BookLibrary.ViewModels
         /// <summary>
         /// We initializeour commands in this constructor
         /// </summary>
-        public MakeResrvationViewModel(Hotel hotel)
+        public MakeResrvationViewModel(Hotel hotel, MyNavigationService reservationViewNavigationService)
         {
-            SubmitCommand = new MakeReservationCommand(this, hotel);
-            CancelCommand = new CancelMakeReservationCommand();
+            SubmitCommand = new MakeReservationCommand(this, hotel, reservationViewNavigationService);
+            CancelCommand = new NavigateCommand(reservationViewNavigationService);
         }
     }
 }
