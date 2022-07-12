@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookLibrary.ViewModels
+namespace Reservoom.ViewModels
 {
     /// <summary>
     /// This view model glue the model and the view

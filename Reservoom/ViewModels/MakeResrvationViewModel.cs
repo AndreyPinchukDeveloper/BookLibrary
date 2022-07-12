@@ -5,7 +5,7 @@ using Reservoom.Stores;
 using System;
 using System.Windows.Input;
 
-namespace BookLibrary.ViewModels
+namespace Reservoom.ViewModels
 {
     public class MakeResrvationViewModel:ViewModelBase
     {
