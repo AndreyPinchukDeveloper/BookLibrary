@@ -1,7 +1,9 @@
 ﻿using HotelManagerClassLibrary.Models;
+using HotelManger.DbContexts;
 using HotelManger.Services;
 using HotelManger.Stores;
 using HotelManger.ViewModels;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -17,6 +19,7 @@ namespace HotelManger
     /// </summary>
     public partial class App : Application
     {
+        private const string CONNECTION_STRING = "Data Source = reservoom.db";
         private readonly Hotel _hotel;
         private readonly NavigationStore _navigationStore;
         public App()
@@ -27,6 +30,12 @@ namespace HotelManger
 
         protected override void OnStartup(StartupEventArgs e)
         {
+            DbContextOptions options = new DbContextOptionsBuilder().UseSqlite(CONNECTION_STRING).Options;
+            using (ReservoomDbContext dbContext = new ReservoomDbContext(options))
+            {
+                dbContext.Database.Migrate();
+            }
+
             _navigationStore.CurrentViewModel = CreateMakeReservationViewModel();
             MainWindow = new MainWindow()
             {
