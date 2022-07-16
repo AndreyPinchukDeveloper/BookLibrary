@@ -1,11 +1,10 @@
 ﻿using HotelManagerClassLibrary.Exceptions;
-using System.Collections.Generic;
 
 namespace HotelManagerClassLibrary.Models
 {
     public class ReservationBook
     {
-        private readonly List<Reservation> _reservations;
+        private readonly IReservationProvider _reservationProvider;
 
         public ReservationBook()
         {

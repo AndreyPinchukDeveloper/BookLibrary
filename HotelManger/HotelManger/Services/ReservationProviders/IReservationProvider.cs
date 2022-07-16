@@ -6,7 +6,7 @@ namespace HotelManger.Services.ReservationProviders
 {
     public interface IReservationProvider
     {
-        Task<IEnumerable<Reservation>> GetAllReservation();//Класс Task представляет собой одну операцию,
+        Task<IEnumerable<Reservation>> GetAllReservations();//Класс Task представляет собой одну операцию,
                                                            //которая не возвращает значение и обычно выполняется асинхронно.
                                                            //Task объекты являются одним из центральных компонентов асинхронного шаблона на основе задач
 
