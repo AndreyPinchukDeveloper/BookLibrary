@@ -1,15 +1,12 @@
-﻿using HotelManagerClassLibrary.Models;
-using HotelManger.DbContexts;
+﻿using HotelManger.DbContexts;
+using HotelManger.Models;
 using HotelManger.Services;
+using HotelManger.Services.ReservationConflictValidators;
+using HotelManger.Services.ReservationCreators;
+using HotelManger.Services.ReservationProviders;
 using HotelManger.Stores;
 using HotelManger.ViewModels;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace HotelManger
@@ -22,16 +19,24 @@ namespace HotelManger
         private const string CONNECTION_STRING = "Data Source = reservoom.db";
         private readonly Hotel _hotel;
         private readonly NavigationStore _navigationStore;
+        private readonly ReservoomDbContextFactory _reservoomDbContextFactory;
+
         public App()
         {
-            _hotel = new Hotel("Lovely Andre");
+            _reservoomDbContextFactory = new ReservoomDbContextFactory(CONNECTION_STRING);
+            IReservationProvider reservationProvider = new DatabaseReservationProvider(_reservoomDbContextFactory);
+            IReservationCreator reservationCreator = new DatabaseReservationCreator(_reservoomDbContextFactory);
+            IReservationConflictValidator reservationConflictValidator = new DatabaseReservationConflictValidator(_reservoomDbContextFactory);
+
+            ReservationBook reservationBook = new ReservationBook(reservationProvider, reservationCreator, reservationConflictValidator);
+
+            _hotel = new Hotel("Lovely Andre", reservationBook);
             _navigationStore = new NavigationStore();
         }
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            DbContextOptions options = new DbContextOptionsBuilder().UseSqlite(CONNECTION_STRING).Options;
-            using (ReservoomDbContext dbContext = new ReservoomDbContext(options))
+            using (ReservoomDbContext dbContext = _reservoomDbContextFactory.CreateDbContext())
             {
                 dbContext.Database.Migrate();
             }

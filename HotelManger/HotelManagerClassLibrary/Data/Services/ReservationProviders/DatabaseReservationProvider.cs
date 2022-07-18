@@ -1,12 +1,9 @@
-﻿using HotelManger.DbContexts;
-using HotelManger.DTOs;
-using HotelManger.Models;
+﻿using HotelManagerClassLibrary.Data.DbContexts;
+using HotelManagerClassLibrary.Data.DTOs;
+using HotelManagerClassLibrary.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace HotelManger.Services.ReservationProviders
+namespace HotelManagerClassLibrary.Data.Services.ReservationProviders
 {
     public class DatabaseReservationProvider : IReservationProvider
     {
@@ -16,8 +13,8 @@ namespace HotelManger.Services.ReservationProviders
         {
             _dbContextFactory = dbContextFactory;
         }
-        
-        public async Task<IEnumerable<Reservation>> GetAllReservations()//Класс Task представляет собой одну операцию, которая не возвращает значение и обычно выполняется асинхронно.
+
+        /*public async Task<IEnumerable<Reservation>> GetAllReservations()//Класс Task представляет собой одну операцию, которая не возвращает значение и обычно выполняется асинхронно.
                                                                         //Task объекты являются одним из центральных компонентов асинхронного шаблона на основе задач
         {
             using (ReservoomDbContext context = _dbContextFactory.CreateDbContext())
@@ -25,7 +22,7 @@ namespace HotelManger.Services.ReservationProviders
                 IEnumerable<ReservationDTO> reservationDTOs = await context.Reservations.ToListAsync();
                 return reservationDTOs.Select(r => ToReservation(r));
             }
-        }
+        }*/
 
         private static Reservation ToReservation(ReservationDTO dto)
         {

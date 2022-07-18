@@ -1,4 +1,4 @@
-﻿using HotelManagerClassLibrary.Models;
+﻿using HotelManger.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

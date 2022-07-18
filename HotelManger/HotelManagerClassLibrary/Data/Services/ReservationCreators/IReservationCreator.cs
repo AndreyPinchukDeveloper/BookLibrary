@@ -1,7 +1,6 @@
-﻿using HotelManger.Models;
-using System.Threading.Tasks;
+﻿using HotelManagerClassLibrary.Models;
 
-namespace HotelManger.Services.ReservationCreators
+namespace HotelManagerClassLibrary.Data.Services.ReservationCreators
 {
     public interface IReservationCreator
     {

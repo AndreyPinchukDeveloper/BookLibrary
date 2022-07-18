@@ -1,5 +1,5 @@
-﻿using HotelManagerClassLibrary.Exceptions;
-using HotelManagerClassLibrary.Models;
+﻿using HotelManger.Exceptions;
+using HotelManger.Models;
 using HotelManger.Services;
 using HotelManger.ViewModels;
 using System.ComponentModel;

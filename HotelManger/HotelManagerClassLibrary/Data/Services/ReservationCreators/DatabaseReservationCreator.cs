@@ -1,9 +1,8 @@
-﻿using HotelManger.DbContexts;
-using HotelManger.DTOs;
-using HotelManger.Models;
-using System.Threading.Tasks;
+﻿using HotelManagerClassLibrary.Data.DbContexts;
+using HotelManagerClassLibrary.Data.DTOs;
+using HotelManagerClassLibrary.Models;
 
-namespace HotelManger.Services.ReservationCreators
+namespace HotelManagerClassLibrary.Data.Services.ReservationCreators
 {
     public class DatabaseReservationCreator : IReservationCreator
     {
@@ -16,11 +15,11 @@ namespace HotelManger.Services.ReservationCreators
 
         public async Task CreateReservation(Reservation reservation)
         {
-            using(ReservoomDbContext context = _dbContextFactory.CreateDbContext())
+            using (ReservoomDbContext context = _dbContextFactory.CreateDbContext())
             {
                 ReservationDTO reservationDTO = ToReservationDTO(reservation);
 
-                context.Reservations.Add(reservationDTO);
+                //context.Reservations.Add(reservationDTO);
                 await context.SaveChangesAsync();
             }
         }
