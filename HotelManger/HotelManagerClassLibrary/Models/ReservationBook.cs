@@ -1,4 +1,5 @@
-﻿using HotelManagerClassLibrary.Exceptions;
+﻿using HotelManagerClassLibrary.Data.Services.ReservationProviders;
+using HotelManagerClassLibrary.Exceptions;
 
 namespace HotelManagerClassLibrary.Models
 {

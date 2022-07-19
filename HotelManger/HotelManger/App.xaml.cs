@@ -18,6 +18,7 @@ namespace HotelManger
     {
         private const string CONNECTION_STRING = "Data Source = reservoom.db";
         private readonly Hotel _hotel;
+        private readonly HotelStore _hotelStore;
         private readonly NavigationStore _navigationStore;
         private readonly ReservoomDbContextFactory _reservoomDbContextFactory;
 
@@ -31,6 +32,7 @@ namespace HotelManger
             ReservationBook reservationBook = new ReservationBook(reservationProvider, reservationCreator, reservationConflictValidator);
 
             _hotel = new Hotel("Lovely Andre", reservationBook);
+            _hotelStore = new HotelStore(_hotel);
             _navigationStore = new NavigationStore();
         }
 
@@ -57,7 +59,7 @@ namespace HotelManger
 
         private ReservationListingViewModel CreateReservationViewModel()
         {
-            return new ReservationListingViewModel(_hotel, new MyNavigationService(_navigationStore, CreateMakeReservationViewModel));
+            return ReservationListingViewModel.LoadViewModel(_hotelStore, new MyNavigationService(_navigationStore, CreateMakeReservationViewModel));
         }
     }
 }

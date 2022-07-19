@@ -1,5 +1,5 @@
-﻿using HotelManagerClassLibrary.Models;
-using HotelManger.Commands;
+﻿using HotelManger.Commands;
+using HotelManger.Models;
 using HotelManger.Services;
 using System;
 using System.Windows.Input;

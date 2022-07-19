@@ -20,18 +20,5 @@ namespace HotelManger.Models
             StartTime = startTime;
             EndTime = endTime;
         }
-
-        /// <summary>
-        /// While we're going to create new reservation this method check if our reservation already exist
-        /// </summary>
-        internal bool Conflicts(Reservation reservation)
-        {
-            if (reservation.RoomID != RoomID)
-            {
-                return false;
-            }
-
-            return reservation.StartTime < EndTime && reservation.EndTime > StartTime;
-        }
     }
 }
