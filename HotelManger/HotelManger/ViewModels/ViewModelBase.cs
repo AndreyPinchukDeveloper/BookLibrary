@@ -18,5 +18,10 @@ namespace HotelManger.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        /// <summary>
+        /// Dispose use to delete unmanage resources
+        /// </summary>
+        public virtual void Dispose() { }
     }
 }

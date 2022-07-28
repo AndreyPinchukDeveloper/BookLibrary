@@ -1,6 +1,7 @@
 ﻿using HotelManger.Commands;
 using HotelManger.Models;
 using HotelManger.Services;
+using HotelManger.Stores;
 using System;
 using System.Windows.Input;
 
@@ -74,9 +75,9 @@ namespace HotelManger.ViewModels
         /// <summary>
         /// We initializeour commands in this constructor
         /// </summary>
-        public MakeReservationViewModel(Hotel hotel, MyNavigationService reservationViewNavigationService)
+        public MakeReservationViewModel(HotelStore hotelStore, MyNavigationService reservationViewNavigationService)
         {
-            SubmitCommand = new MakeReservationCommand(this, hotel, reservationViewNavigationService);
+            SubmitCommand = new MakeReservationCommand(this, hotelStore, reservationViewNavigationService);
             CancelCommand = new NavigateCommand(reservationViewNavigationService);
         }
     }

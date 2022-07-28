@@ -54,12 +54,16 @@ namespace HotelManger
         }
         private MakeReservationViewModel CreateMakeReservationViewModel()
         {
-            return new MakeReservationViewModel(_hotel, new MyNavigationService(_navigationStore, CreateReservationViewModel));
+            return new MakeReservationViewModel(
+                _hotelStore, 
+                new MyNavigationService(_navigationStore, CreateReservationViewModel));
         }
 
         private ReservationListingViewModel CreateReservationViewModel()
         {
-            return ReservationListingViewModel.LoadViewModel(_hotelStore, new MyNavigationService(_navigationStore, CreateMakeReservationViewModel));
+            return ReservationListingViewModel.LoadViewModel(
+                _hotelStore,
+                new MyNavigationService(_navigationStore, CreateMakeReservationViewModel));
         }
     }
 }

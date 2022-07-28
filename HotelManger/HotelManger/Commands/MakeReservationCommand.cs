@@ -1,6 +1,7 @@
 ﻿using HotelManger.Exceptions;
 using HotelManger.Models;
 using HotelManger.Services;
+using HotelManger.Stores;
 using HotelManger.ViewModels;
 using System;
 using System.ComponentModel;
@@ -12,13 +13,13 @@ namespace HotelManger.Commands
     public class MakeReservationCommand : AsyncCommandBase
     {
         private readonly MakeReservationViewModel _makeResrvationViewModel;
-        private readonly Hotel _hotel;
+        private readonly HotelStore _hotelStore;
         private readonly MyNavigationService _reservationViewNavigationService;
 
-        public MakeReservationCommand(MakeReservationViewModel makeResrvationViewModel, Hotel hotel, MyNavigationService reservationViewNavigationService)
+        public MakeReservationCommand(MakeReservationViewModel makeResrvationViewModel, HotelStore hotelStore, MyNavigationService reservationViewNavigationService)
         {
             _makeResrvationViewModel = makeResrvationViewModel;
-            _hotel = hotel;
+            _hotelStore = hotelStore;
             _reservationViewNavigationService = reservationViewNavigationService;
 
             _makeResrvationViewModel.PropertyChanged += OnViewModelPropertyChanged;//subscribe to propertyChnaged on our ViewModel
@@ -62,7 +63,7 @@ namespace HotelManger.Commands
 
             try
             {
-                await _hotel.MakeReservation(reservation);
+                await _hotelStore.MakeReservation(reservation);
                 MessageBox.Show("Successfully reserved room.", "Success",
                     MessageBoxButton.OK, MessageBoxImage.Information);
 

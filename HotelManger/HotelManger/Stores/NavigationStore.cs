@@ -14,6 +14,7 @@ namespace HotelManger.Stores
             get => _currentViewModel;
             set//good place to dispose view models
             {
+                _currentViewModel?.Dispose();
                 _currentViewModel = value;
                 OnCurrentViewModelChanged();
             }
