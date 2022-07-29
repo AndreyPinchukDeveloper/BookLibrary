@@ -13,13 +13,16 @@ namespace HotelManger.Commands
     {
         private readonly ReservationListingViewModel _viewModel;
         private readonly HotelStore _hotelStore;
+
         public LoadReservationsCommand(ReservationListingViewModel reservationListingViewModel, HotelStore hotelStore)//check here if something came up
         {
             _viewModel = reservationListingViewModel;
             _hotelStore = hotelStore;
         }
+
         public override async Task ExecuteAsync(object parameter)
         {
+            _viewModel.IsLoading = true;
             try
             {
                 await _hotelStore.Load();
@@ -31,7 +34,7 @@ namespace HotelManger.Commands
                 MessageBox.Show("Failed to load reservations.", "Error",
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            
+            _viewModel.IsLoading = true;
         }
     }
 }
