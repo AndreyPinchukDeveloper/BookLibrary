@@ -14,6 +14,21 @@ namespace HotelManger.ViewModels
         private readonly HotelStore _hotelStore;//check here
         public IEnumerable<ReservationViewModel> Reservations => _reservations;
 
+        private string _errorMessage;
+
+        public string ErrorMessage
+        {
+            get { return _errorMessage; }
+            set 
+            {
+                _errorMessage = value; 
+                OnPropertyChanged(nameof(ErrorMessage));
+                OnPropertyChanged(nameof(HasErrorMessage));
+            }
+        }
+
+        public bool HasErrorMessage => !string.IsNullOrEmpty(ErrorMessage);
+
         private bool _isLoading;
 
         public bool IsLoading

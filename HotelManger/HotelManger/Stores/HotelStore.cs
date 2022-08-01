@@ -11,7 +11,7 @@ namespace HotelManger.Stores
     {
         private readonly Hotel _hotel;
         private readonly List<Reservation> _reservations;
-        private readonly Lazy<Task> _initializeLazy;//we use lazy initialization to create an object only when 
+        private Lazy<Task> _initializeLazy;//we use lazy initialization to create an object only when 
                                                     //we first call it
         public IEnumerable<Reservation> Reservations => _reservations;
         public event Action<Reservation> ReservationMade;//Action return void, Func return value
@@ -26,7 +26,17 @@ namespace HotelManger.Stores
 
         public async Task Load()
         {
-            await _initializeLazy.Value;
+            try
+            {
+                await _initializeLazy.Value;
+            }
+            catch (Exception)
+            {
+                _initializeLazy = new Lazy<Task>(Initialize);
+                throw;
+            }
+
+            
         }
 
         public async Task MakeReservation(Reservation reservation)
@@ -51,6 +61,8 @@ namespace HotelManger.Stores
 
             _reservations.Clear();
             _reservations.AddRange(reservations);
+
+            throw new Exception();
         }
     }
 }

@@ -22,19 +22,21 @@ namespace HotelManger.Commands
 
         public override async Task ExecuteAsync(object parameter)
         {
+            _viewModel.ErrorMessage = string.Empty;
             _viewModel.IsLoading = true;
+
             try
             {
                 await _hotelStore.Load();
+                
                 _viewModel.UpdateReservations(_hotelStore.Reservations);
             }
             catch (Exception)
             {
 
-                MessageBox.Show("Failed to load reservations.", "Error",
-                    MessageBoxButton.OK, MessageBoxImage.Error);
+                _viewModel.ErrorMessage = "Failed to load reservations.";
             }
-            _viewModel.IsLoading = true;
+            _viewModel.IsLoading = false;
         }
     }
 }
