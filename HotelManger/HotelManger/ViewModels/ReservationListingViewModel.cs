@@ -43,13 +43,13 @@ namespace HotelManger.ViewModels
 
         public ReservationListingViewModel(
             HotelStore hotelStore, 
-            MyNavigationService makeReservationNavigationService)
+            MyNavigationService<MakeReservationViewModel> makeReservationNavigationService)
         {
             _hotelStore = hotelStore;
             _reservations = new ObservableCollection<ReservationViewModel>();
 
             LoadReservationsCommand = new LoadReservationsCommand(this, hotelStore);
-            MakeReservationCommand = new NavigateCommand(makeReservationNavigationService);
+            MakeReservationCommand = new NavigateCommand<MakeReservationViewModel>(makeReservationNavigationService);
             _hotelStore.ReservationMade += OnReservationMade;//subscribe
         }
 
@@ -70,7 +70,7 @@ namespace HotelManger.ViewModels
 
         public static ReservationListingViewModel LoadViewModel(
             HotelStore hotelStore,
-            MyNavigationService makeReservationNavigationService)
+            MyNavigationService<MakeReservationViewModel> makeReservationNavigationService)
         {
             ReservationListingViewModel viewModel = new ReservationListingViewModel(hotelStore, makeReservationNavigationService);
             viewModel.LoadReservationsCommand.Execute(null);

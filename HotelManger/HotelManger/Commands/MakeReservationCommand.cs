@@ -14,9 +14,12 @@ namespace HotelManger.Commands
     {
         private readonly MakeReservationViewModel _makeResrvationViewModel;
         private readonly HotelStore _hotelStore;
-        private readonly MyNavigationService _reservationViewNavigationService;
+        private readonly MyNavigationService<ReservationListingViewModel> _reservationViewNavigationService;
 
-        public MakeReservationCommand(MakeReservationViewModel makeResrvationViewModel, HotelStore hotelStore, MyNavigationService reservationViewNavigationService)
+        public MakeReservationCommand(
+            MakeReservationViewModel makeResrvationViewModel, 
+            HotelStore hotelStore, 
+            MyNavigationService<ReservationListingViewModel> reservationViewNavigationService)
         {
             _makeResrvationViewModel = makeResrvationViewModel;
             _hotelStore = hotelStore;

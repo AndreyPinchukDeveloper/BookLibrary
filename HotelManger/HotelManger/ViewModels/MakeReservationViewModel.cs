@@ -122,10 +122,10 @@ namespace HotelManger.ViewModels
         /// <summary>
         /// We initializeour commands in this constructor
         /// </summary>
-        public MakeReservationViewModel(HotelStore hotelStore, MyNavigationService reservationViewNavigationService)
+        public MakeReservationViewModel(HotelStore hotelStore, MyNavigationService<ReservationListingViewModel> reservationViewNavigationService)
         {
             SubmitCommand = new MakeReservationCommand(this, hotelStore, reservationViewNavigationService);
-            CancelCommand = new NavigateCommand(reservationViewNavigationService);
+            CancelCommand = new NavigateCommand<ReservationListingViewModel>(reservationViewNavigationService);
 
             _propertyNameToErrorsDictionary = new Dictionary<string, List<string>>();
         }

@@ -61,8 +61,6 @@ namespace HotelManger.Stores
 
             _reservations.Clear();
             _reservations.AddRange(reservations);
-
-            throw new Exception();
         }
     }
 }

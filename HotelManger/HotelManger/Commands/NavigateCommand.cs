@@ -1,11 +1,12 @@
 ﻿using HotelManger.Services;
+using HotelManger.ViewModels;
 
 namespace HotelManger.Commands
 {
-    public class NavigateCommand : CommandBase
+    public class NavigateCommand<TViewModel> : CommandBase where TViewModel : ViewModelBase
     {
-        private readonly MyNavigationService _navigationService;
-        public NavigateCommand(MyNavigationService navigationService)
+        private readonly MyNavigationService<TViewModel> _navigationService;
+        public NavigateCommand(MyNavigationService<TViewModel> navigationService)
         {
             _navigationService = navigationService;
         }
