@@ -34,7 +34,7 @@ namespace HotelManger
                 services.AddTransient<ReservationBook>();
                 services.AddSingleton((s) => new Hotel("Andre", s.GetRequiredService<ReservationBook>()));
 
-                services.AddSingleton<ReservationListingViewModel>();
+                services.AddSingleton((s) => CreateReservationListingViewModel(s));
                 services.AddTransient<Func<ReservationListingViewModel>>((s) => () => s.GetRequiredService<ReservationListingViewModel>());
                 services.AddSingleton<MyNavigationService<ReservationListingViewModel>>();
 
@@ -45,13 +45,19 @@ namespace HotelManger
                 services.AddSingleton<HotelStore>();
                 services.AddSingleton<NavigationStore>();
 
-
                 services.AddSingleton<MainViewModel>();
                 services.AddSingleton(s => new MainWindow()
                 {
                     DataContext = s.GetRequiredService<MainViewModel>()
                 });
             }).Build();
+        }
+
+        private ReservationListingViewModel CreateReservationListingViewModel(IServiceProvider services)
+        {
+            return ReservationListingViewModel.LoadViewModel(
+                services.GetRequiredService<HotelStore>(),
+                services.GetRequiredService<MyNavigationService<MakeReservationViewModel>>());
         }
 
         protected override void OnStartup(StartupEventArgs e)
@@ -71,6 +77,13 @@ namespace HotelManger
             MainWindow.Show();
 
             base.OnStartup(e);
+        }
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            _host.Dispose();//make free ungovernable resources
+
+            base.OnExit(e);
         }
     }
 }
